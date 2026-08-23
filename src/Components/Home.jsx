@@ -1,9 +1,12 @@
 import React from "react";
 import { BatteryMedium, Smartphone } from "lucide-react";
+import { Link } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Faq from "./Faq";
 import About from "./About";
+import Card from "./Card";
+ 
 const services = [
 	{
 		title: "Screen replacement",
@@ -31,17 +34,22 @@ export default function Home() {
 						Quality mobile phone parts, accessories, and everyday repair help—kept simple, honest, and accessible.
 					</p>
 					<div className="mt-9 flex flex-wrap gap-3">
-						<a href="#shop" className="inline-flex rounded-full bg-green-500 px-6 py-3 font-semibold text-white transition hover:bg-green-600">
+						<Link
+							to="/store"
+							className="inline-flex rounded-full bg-green-500 px-6 py-3 font-semibold text-white transition hover:bg-green-600"
+						>
 							Shop parts & accessories <span className="ml-2" aria-hidden="true">→</span>
-						</a>
+						</Link>
 						<a href="#services" className="inline-flex rounded-full border border-black/10 px-6 py-3 font-semibold transition hover:border-black/30">
 							Explore services
 						</a>
+
 					</div>
+              
 				</div>
 			</section>
 
-			<section id="services" className="flex min-h-[70vh] items-center border-t border-black/10 bg-white]">
+			<section id="services" className="flex min-h-[70vh] items-center border-t border-black/10 bg-white">
 				<div className="mx-auto w-full max-w-6xl px-6 py-16 text-center lg:px-8 lg:py-20">
 					<div className="mb-10 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
 						<div>
