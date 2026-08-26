@@ -49,32 +49,7 @@ export default function Home() {
 				</div>
 			</section>
 
-			<section id="services" className="flex min-h-[70vh] items-center border-t border-black/10 bg-white">
-				<div className="mx-auto w-full max-w-6xl px-6 py-16 text-center lg:px-8 lg:py-20">
-					<div className="mb-10 flex flex-col justify-between gap-3 sm:flex-row sm:items-end">
-						<div>
-							<p className="text-sm font-semibold text-green-400">What we do</p>
-							<h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Most-loved services</h2>
-						</div>
-						<p className="max-w-xs text-sm leading-6 text-black/50 sm:text-left">The essentials to keep your phone working at its best.</p>
-					</div>
-					<div className="grid gap-4 md:grid-cols-2">
-						{services.map((service) => (
-							<div key={service.title} className="text-left">
-								<a href={`/services/${service.title.toLowerCase().replaceAll(" ", "-")}`} className="flex h-48 items-center justify-center rounded-2xl border border-black/10 bg-white transition hover:-translate-y-1 hover:border-black/20 hover:shadow-lg" aria-label={service.title}>
-									<div className="flex h-16 w-16 items-center justify-center rounded-xl bg-green-400/10 text-green-500" aria-hidden="true">
-										<service.icon size={30} strokeWidth={1.75} />
-									</div>
-								</a>
-								<div className="mt-4 px-1">
-									<h3 className="text-xl font-bold">{service.title}</h3>
-									<p className="mt-2 text-black/55">{service.description}</p>
-								</div>
-							</div>
-						))}
-					</div>
-				</div>
-			</section>
+		 
 
 			<About />
 

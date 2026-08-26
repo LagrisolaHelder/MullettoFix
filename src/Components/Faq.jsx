@@ -22,24 +22,24 @@ const sections = [
 export default function Faq() {
 	const [open, setOpen] = useState("0-0");
 	return (
-		<section className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
+		<section className="mx-auto max-w-6xl px-6 py-20 lg:px-8 lg:py-28">
 			<header className="mb-10 text-center">
-				<HelpCircle className="mx-auto mb-4 h-10 w-10 text-green-500" />
-				<h2 className="text-3xl font-bold tracking-tight text-slate-950">Frequently asked questions</h2>
-				<p className="mt-3 text-slate-500">Everything you need to know about our parts, shipping, and repairs.</p>
+				<HelpCircle className="mx-auto mb-4 h-10 w-10 text-green-400" />
+				<h2 className="text-4xl font-bold tracking-tight text-black sm:text-5xl">Frequently asked questions</h2>
+				<p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-black/60">Everything you need to know about our parts, shipping, and repairs.</p>
 			</header>
-			<div className="space-y-8">
+			<div className="space-y-6">
 				{sections.map(([title, items], sectionIndex) => (
-					<div key={title} className="rounded-2xl border border-slate-200 bg-white px-5 shadow-sm sm:px-7">
-						<h3 className="border-b border-slate-200 py-4 text-xs font-bold uppercase tracking-[.18em] text-green-500">{title}</h3>
+					<div key={title} className="rounded-2xl border border-black/10 px-5 sm:px-7">
+						<h3 className="border-b border-black/10 py-4 text-xs font-bold uppercase tracking-[.18em] text-green-400">{title}</h3>
 						{items.map(([question, answer], itemIndex) => {
 							const id = `${sectionIndex}-${itemIndex}`;
 							const isOpen = open === id;
-							return <div key={question} className="border-b border-slate-200 last:border-0">
-								<button type="button" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? "" : id)} className="flex w-full items-center justify-between gap-5 py-5 text-left text-sm font-semibold text-slate-900 hover:text-green-500">
-									<span>{question}</span><ChevronDown className={`h-5 w-5 shrink-0 text-green-500 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+							return <div key={question} className="border-b border-black/10 last:border-0">
+								<button type="button" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? "" : id)} className="flex w-full items-center justify-between gap-5 py-5 text-left text-sm font-semibold text-black hover:text-green-400">
+									<span>{question}</span><ChevronDown className={`h-5 w-5 shrink-0 text-green-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
 								</button>
-								{isOpen && <div className="pb-5 pr-8 text-sm leading-6 text-slate-600">{answer}</div>}
+								{isOpen && <div className="pb-5 pr-8 text-sm leading-6 text-black/60">{answer}</div>}
 							</div>;
 						})}
 					</div>
