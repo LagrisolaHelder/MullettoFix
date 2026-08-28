@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+
+
+*{
+    font-family: 'Satoshi', sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}

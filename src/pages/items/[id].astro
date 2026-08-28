@@ -1,0 +1,58 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { supabase } from "../../lib/supabase";
+
+export async function getStaticPaths() {
+  const { data: items } = await supabase.from("items").select("id");
+
+  return (items || []).map((item) => ({
+    params: { id: item.id },
+  }));
+}
+
+const { id } = Astro.params;
+
+const { data: item } = await supabase
+  .from("items")
+  .select("*")
+  .eq("id", id)
+  .single();
+---
+
+<BaseLayout>
+  <section class="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+    <a
+      href="/"
+      class="group mb-12 inline-flex items-center gap-3 text-sm font-semibold text-slate-500 transition hover:text-slate-900 sm:mb-16"
+    >
+      <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
+      Back to shop
+    </a>
+
+    <div class="flex flex-row items-start gap-12 md:gap-16 lg:gap-24">
+      <div class="overflow-hidden rounded-[2rem] bg-slate-100 shadow-xl shadow-slate-200/60 ring-1 ring-slate-200">
+        <img
+          src={item.image}
+          alt={item.name}
+          class="aspect-square w-full object-cover transition duration-500 hover:scale-105"
+        />
+      </div>
+
+      <div class="flex flex-col gap-4 pt-2 md:gap-6 md:pt-8">
+        <h1 class="max-w-xl text-4xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">{item.name}</h1>
+        <p class="mt-6 text-3xl font-bold text-slate-900">{item.price}</p>
+        <div class="my-10 h-px bg-slate-200"></div>
+        <p class="mb-10 max-w-md text-base leading-8 text-slate-600">
+          A carefully selected piece made to bring effortless style and quality to your everyday collection.
+        </p>
+        <button
+          class="w-full rounded-xl bg-slate-950 px-6 py-4 text-center font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 sm:max-w-md"
+        >
+          Add to cart
+        </button>
+        <p class="mt-4 text-center text-xs text-slate-500">Free shipping on orders over $50</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,61 @@
+<section class="hero" aria-labelledby="hero-title">
+	<div class="hero-content">
+		<p class="eyebrow">Reliable repairs. Quality parts.</p>
+		<h1 id="hero-title">Bring your phone back to life.</h1>
+		<p class="intro">
+			Welcome to MullettoFix — your trusted destination for fast phone repairs,
+			genuine accessories, and dependable replacement parts.
+		</p>
+		<div class="actions">
+			<a class="button button-primary" href="/shop">Shop accessories &amp; parts <span aria-hidden="true">→</span></a>
+			<a class="button button-secondary" href="/services">Explore repair services <span aria-hidden="true">→</span></a>
+		</div>
+		<div class="trust" aria-label="Service highlights">
+			<span>✓ Fast turnaround</span>
+			<span>✓ Quality guaranteed</span>
+			<span>✓ Friendly support</span>
+		</div>
+	</div>
+
+	<div class="hero-card">
+		<div class="glow"></div>
+		<img
+			class="repair-image"
+			src="https://images.unsplash.com/photo-1588508065123-287b28e013da?auto=format&fit=crop&w=900&q=85"
+			alt="Technician repairing a smartphone"
+		/>
+		<div class="badge">Ready to fix it?</div>
+	</div>
+</section>
+
+<style>
+	.hero {
+		min-height: 620px;
+		display: grid;
+		grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+		align-items: center;
+		gap: 3rem;
+		padding: 5rem max(1.5rem, 6vw);
+		overflow: hidden;
+		color: #172235;
+		background: #fff;
+	}
+
+	.hero-content { max-width: 680px; position: relative; z-index: 1; }
+	.eyebrow { margin: 0 0 1rem; color: #22c55e; font-size: .8rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+	h1 { max-width: 650px; margin: 0; font-size: clamp(3rem, 7vw, 5.8rem); line-height: .98; letter-spacing: -.06em; }
+	.intro { max-width: 560px; margin: 1.5rem 0 2rem; color: #526176; font-size: 1.1rem; line-height: 1.7; }
+	.actions { display: flex; flex-wrap: wrap; gap: .85rem; }
+	.button { display: inline-flex; align-items: center; gap: .8rem; padding: .95rem 1.2rem; border-radius: 999px; font-weight: 700; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+	.button:hover { transform: translateY(-2px); }
+	.button-primary { color: #fff; background: #22c55e; box-shadow: 0 10px 25px #22c55e44; }
+	.button-secondary { color: #172235; border: 1px solid #cbd5e1; }
+	.button-secondary:hover { box-shadow: 0 8px 20px #0003; }
+	.trust { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 2.25rem; color: #526176; font-size: .85rem; }
+	.trust span::first-letter { color: #22c55e; }
+	.hero-card { position: relative; min-height: 390px; display: grid; place-items: center; }
+	.glow { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: #22c55e33; filter: blur(25px); }
+	.repair-image { position: relative; width: min(100%, 390px); height: 390px; object-fit: cover; border: 10px solid #fff; border-radius: 28px; transform: rotate(4deg); box-shadow: 22px 22px 0 #22c55e33, 0 25px 50px #17223522; }
+	.badge { position: absolute; right: 4%; bottom: 7%; padding: .8rem 1rem; border: 1px solid #bbf7d0; border-radius: 12px; color: #166534; background: #f0fdf4; font-weight: 700; box-shadow: 0 12px 25px #17223522; }
+	@media (max-width: 720px) { .hero { min-height: auto; grid-template-columns: 1fr; padding-top: 4rem; } .hero-card { min-height: 330px; order: -1; } .repair-image { height: 330px; transform: rotate(3deg); } h1 { font-size: clamp(2.8rem, 14vw, 4.5rem); } }
+</style>

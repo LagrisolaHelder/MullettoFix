@@ -1,0 +1,62 @@
+<footer class="footer">
+	<div class="footer__inner">
+		<p>© {new Date().getFullYear()} MullettoFix</p>
+
+		<nav aria-label="Footer navigation">
+			<a href="#about">About</a>
+			<a href="#contact">Contact</a>
+			<a href="#top">Back to top ↑</a>
+		</nav>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		border-top: 1px solid #e5e5e5;
+		color: #666;
+		font-size: 0.875rem;
+	}
+
+	.footer__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1.5rem;
+		max-width: 72rem;
+		margin: 0 auto;
+		padding: 1.5rem 1.25rem;
+	}
+
+	p {
+		margin: 0;
+	}
+
+	nav {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 1rem;
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	a:hover,
+	a:focus-visible {
+		color: #111;
+	}
+
+	@media (max-width:  thirtyrem) {
+		.footer__inner {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+
+		nav {
+			justify-content: flex-start;
+		}
+	}
+</style>
