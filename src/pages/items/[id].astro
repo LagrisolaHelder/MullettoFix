@@ -23,27 +23,27 @@ const { data: item } = await supabase
 <BaseLayout>
   <section class="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
     <a
-      href="/"
+      href="/shop"
       class="group mb-12 inline-flex items-center gap-3 text-sm font-semibold text-slate-500 transition hover:text-slate-900 sm:mb-16"
     >
       <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">&larr;</span>
       Back to shop
     </a>
 
-    <div class="flex flex-row items-start gap-12 md:gap-16 lg:gap-24">
-      <div class="overflow-hidden rounded-[2rem] bg-slate-100 shadow-xl shadow-slate-200/60 ring-1 ring-slate-200">
+    <div class="flex flex-col items-stretch gap-10 md:flex-row md:items-start md:gap-16 lg:gap-24">
+      <div class="w-full overflow-hidden rounded-4xl bg-slate-100 shadow-xl shadow-slate-200/60 ring-1 ring-slate-200 md:w-1/2">
         <img
           src={item.image}
           alt={item.name}
-          class="aspect-square w-full object-cover transition duration-500 hover:scale-105"
+          class="aspect-square w-full object-contain transition duration-500 hover:scale-105"
         />
       </div>
 
-      <div class="flex flex-col gap-4 pt-2 md:gap-6 md:pt-8">
-        <h1 class="max-w-xl text-4xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">{item.name}</h1>
+      <div class="flex w-full flex-col gap-4 pt-2 md:w-1/2 md:gap-6 md:pt-8">
+        <h1 class="max-w-xl text-3xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">{item.name}</h1>
         <p class="mt-6 text-3xl font-bold text-slate-900">{item.price}</p>
-        <div class="my-10 h-px bg-slate-200"></div>
-        <p class="mb-10 max-w-md text-base leading-8 text-slate-600">
+        <div class="my-6 h-px bg-slate-200 sm:my-10"></div>
+        <p class="mb-6 max-w-md text-base leading-8 text-slate-600 sm:mb-10">
           A carefully selected piece made to bring effortless style and quality to your everyday collection.
         </p>
         <button
