@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { supabase } from "../lib/supabase";
+import ShopNavbar from "../components/ShopNavbar.astro";
 
 const { data: items, error } = await supabase
   .from("items")
@@ -22,6 +23,7 @@ if (error) {
     />
   </head>
   <body class="bg-slate-50 text-slate-900">
+    <ShopNavbar />
     <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" aria-label="Shop items">
       <div class="mb-8 text-center">
         <p class="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
