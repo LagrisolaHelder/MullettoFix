@@ -1,16 +1,14 @@
 ---
 import "../styles/global.css";
+import { ShoppingCart } from "lucide-astro";
  
 ---
 
 
-
-<nav class="mx-auto flex max-w-6xl items-center justify-between gap-x-6 px-4 py-4 sm:px-6" aria-label="Main navigation">
+<nav class="sticky top-0 z-50 mx-auto flex max-w-6xl items-center justify-between gap-x-6 px-4 py-4 sm:px-6 bg-white" aria-label="Main navigation">
   <a class="text-xl font-bold tracking-tight text-slate-950 transition-colors hover:text-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-600" href="/" aria-label="Mullettofix home">Mullettofix<span class="text-green-600">.</span></a>
   
   <a class="rounded-md p-2 text-slate-600 transition-colors hover:bg-green-50 hover:text-green-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-600" href="#cart" aria-label="View cart">
-    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m10 0a2 2 0 11-4 0 2 2 0 014 0m-10 0a2 2 0 11-4 0 2 2 0 014 0" />
-    </svg>
+    <ShoppingCart class="h-6 w-6" />
   </a>
 </nav>

@@ -2,6 +2,8 @@
 import "../styles/global.css";
 import { supabase } from "../lib/supabase";
 import ShopNavbar from "../components/ShopNavbar.astro";
+import Footer from "../components/Footer.astro";
+import { ArrowRight, ChevronRight, ShoppingBag, Sparkles } from "lucide-astro";
 
 const { data: items, error } = await supabase
   .from("items")
@@ -25,14 +27,68 @@ if (error) {
   <body class="bg-slate-50 text-slate-900">
     <ShopNavbar />
     <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" aria-label="Shop items">
-      <div class="mb-8 text-center">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
-          Shop our collection of accessories and replacement parts
-        </p>
-        <h1 class="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-          Shop essentials
-        </h1>
-      </div>
+     
+
+      {items && items.length > 0 && (
+        <div class="mb-10">
+          <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-2xl font-bold text-slate-900">New arrivals</h2>
+            <span class="text-sm text-slate-500">Fresh picks</span>
+          </div>
+
+          <div class="relative overflow-hidden rounded-3xl border border-slate-200 bg-white pb-10 shadow-sm sm:pb-0">
+            <div class="flex transition-transform duration-700 ease-in-out" id="new-arrivals-track">
+              {items.slice(0, 3).map((item) => (
+                <article class="min-w-full" aria-label={item.name}>
+                  <a href={`/items/${item.id}`} class="block">
+                    <div class="grid items-center gap-6 px-5 py-6 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-12 lg:py-10">
+                      <div class="order-2 lg:order-1">
+                        <p class="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">
+                          New arrival
+                        </p>
+                        <h3 class="mb-3 line-clamp-2 text-2xl font-bold text-slate-900 sm:text-3xl">
+                          {item.name}
+                        </h3>
+                        <p class="mb-5 max-w-md text-sm text-slate-600 sm:text-base">
+                          Discover our latest addition to the essentials range, made for everyday use.
+                        </p>
+                        <div class="flex items-center gap-4">
+                          <span class="text-2xl font-bold text-slate-900">£{item.price}</span>
+                          <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700">
+                            Shop now
+                          </span>
+                        </div>
+                      </div>
+
+                      <div class="order-1 flex justify-center lg:order-2">
+                        <div class="aspect-square w-full max-w-sm overflow-hidden rounded-2xl bg-slate-100">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            class="h-full w-full object-contain transition duration-500 hover:scale-105"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                </article>
+              ))}
+            </div>
+
+            <div class="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+              {items.slice(0, 3).map((_, index) => (
+                <button
+                  type="button"
+                  class={`h-2.5 rounded-full transition-all duration-300 ${index === 0 ? "w-6 bg-slate-900" : "w-2.5 bg-slate-300"}`}
+                  data-carousel-dot={index}
+                  aria-label={`Go to slide ${index + 1}`}
+                  aria-current={index === 0 ? "true" : "false"}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 xl:grid-cols-4">
         {items && items.map((item) => (
@@ -59,6 +115,35 @@ if (error) {
           </a>
         ))}
       </div>
+
+      <br />
+      <Footer />
     </section>
+
+    <script>
+      const track = document.getElementById('new-arrivals-track');
+      const dots = document.querySelectorAll('[data-carousel-dot]');
+
+      if (track && dots.length > 1) {
+        let currentIndex = 0;
+
+        const updateCarousel = (nextIndex) => {
+          currentIndex = (nextIndex + dots.length) % dots.length;
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+          dots.forEach((dot, index) => {
+            const isActive = index === currentIndex;
+            dot.setAttribute('aria-current', isActive ? 'true' : 'false');
+            dot.className = `h-2.5 rounded-full transition-all duration-300 ${isActive ? 'w-6 bg-slate-900' : 'w-2.5 bg-slate-300'}`;
+          });
+        };
+
+        dots.forEach((dot) => {
+          dot.addEventListener('click', () => updateCarousel(Number(dot.dataset.carouselDot)));
+        });
+
+        setInterval(() => updateCarousel(currentIndex + 1), 4000);
+      }
+    </script>
   </body>
 </html>
