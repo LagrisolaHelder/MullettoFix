@@ -13,6 +13,17 @@ export async function getStaticPaths() {
 
 const { id } = Astro.params;
 
+const today = new Date();
+const deliveryStart = new Date(today);
+deliveryStart.setDate(today.getDate() + 3);
+const deliveryEnd = new Date(today);
+deliveryEnd.setDate(today.getDate() + 5);
+
+const formatDate = (date: Date) =>
+  new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" }).format(date);
+
+const deliveryRange = `${formatDate(deliveryStart)} - ${formatDate(deliveryEnd)}`;
+
 const { data: item } = await supabase
   .from("items")
   .select("*")
@@ -41,10 +52,13 @@ const { data: item } = await supabase
 
       <div class="flex w-full flex-col gap-4 pt-2 md:w-1/2 md:gap-6 md:pt-8">
         <h1 class="max-w-xl text-3xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">{item.name}</h1>
-        <p class="mt-6 text-3xl font-bold text-slate-900">{item.price}</p>
+        <div class="mt-6">
+          <p class="text-3xl font-bold text-slate-900">£{item.price}</p>
+          <p class="mt-2 text-sm font-medium text-slate-500">Delivery: {deliveryRange}</p>
+        </div>
         <div class="my-6 h-px bg-slate-200 sm:my-10"></div>
         <p class="mb-6 max-w-md text-base leading-8 text-slate-600 sm:mb-10">
-          A carefully selected piece made to bring effortless style and quality to your everyday collection.
+          {item.description}
         </p>
         <button
           class="w-full rounded-xl bg-slate-950 px-6 py-4 text-center font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 sm:max-w-md"
