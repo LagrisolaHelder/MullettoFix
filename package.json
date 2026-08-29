@@ -12,9 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@stripe/stripe-js": "^9.14.0",
     "@supabase/supabase-js": "^2.112.4",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.9",
+    "stripe": "^22.6.0",
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {

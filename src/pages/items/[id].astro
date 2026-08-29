@@ -29,10 +29,16 @@ const { data: item } = await supabase
   .select("*")
   .eq("id", id)
   .single();
+
+const { data: relatedItems } = await supabase
+  .from("items")
+  .select("*")
+  .neq("id", id)
+  .limit(3);
 ---
 
 <BaseLayout>
-  <section class="mx-auto max-w-7xl px-5 py-10 sm:px-8 sm:py-16 lg:px-12 lg:py-20">
+  <section class="mx-auto max-w-7xl px-5 pb-28 pt-10 sm:px-8 sm:pb-16 sm:pt-16 lg:px-12 lg:py-20">
     <a
       href="/shop"
       class="group mb-12 inline-flex items-center gap-3 text-sm font-semibold text-slate-500 transition hover:text-slate-900 sm:mb-16"
@@ -52,20 +58,55 @@ const { data: item } = await supabase
 
       <div class="flex w-full flex-col gap-4 pt-2 md:w-1/2 md:gap-6 md:pt-8">
         <h1 class="max-w-xl text-3xl font-bold leading-tight tracking-tight text-slate-950 sm:text-5xl">{item.name}</h1>
-        <div class="mt-6">
+        <div class="mt-2">
           <p class="text-3xl font-bold text-slate-900">£{item.price}</p>
           <p class="mt-2 text-sm font-medium text-slate-500">Delivery: {deliveryRange}</p>
         </div>
-        <div class="my-6 h-px bg-slate-200 sm:my-10"></div>
+
+        <div class="flex w-full flex-col gap-3 sm:max-w-md">
+          <button
+            class="w-full rounded-xl bg-slate-950 px-6 py-4 text-center font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2"
+          >
+            Add to cart
+          </button>
+          {
+            item.payment_url && (
+              <a
+                href={item.payment_url}
+                class="w-full rounded-xl bg-emerald-600 px-6 py-4 text-center font-semibold text-white shadow-lg shadow-emerald-600/20 transition hover:-translate-y-0.5 hover:bg-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              >
+                Buy now
+              </a>
+            )
+          }
+        </div>
+
+        <div class="my-2 h-px bg-slate-200 sm:my-6"></div>
         <p class="mb-6 max-w-md text-base leading-8 text-slate-600 sm:mb-10">
           {item.description}
         </p>
-        <button
-          class="w-full rounded-xl bg-slate-950 px-6 py-4 text-center font-semibold text-white shadow-lg shadow-slate-900/15 transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-900 focus:ring-offset-2 sm:max-w-md"
-        >
-          Add to cart
-        </button>
-        <p class="mt-4 text-center text-xs text-slate-500">Free shipping on orders over $50</p>
+        <p class="mt-2 text-center text-xs text-slate-500">Free shipping on orders over $50</p>
+      </div>
+    </div>
+
+    <div class="mt-20">
+      <h2 class="mb-8 text-2xl font-bold text-slate-950 sm:text-3xl">You may also like</h2>
+      <div class="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {relatedItems && relatedItems.map((relatedItem) => (
+          <a href={`/items/${relatedItem.id}`} class="group flex flex-col overflow-hidden rounded-2xl bg-slate-50 shadow-md transition hover:shadow-lg">
+            <div class="aspect-square overflow-hidden bg-slate-100">
+              <img
+                src={relatedItem.image}
+                alt={relatedItem.name}
+                class="aspect-square w-full object-contain transition duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div class="flex-1 p-4">
+              <h3 class="line-clamp-1 text-sm font-semibold text-slate-950">{relatedItem.name}</h3>
+              <p class="mt-2 text-base font-bold text-slate-900">£{relatedItem.price}</p>
+            </div>
+          </a>
+        ))}
       </div>
     </div>
   </section>
