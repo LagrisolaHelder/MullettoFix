@@ -1,6 +1,7 @@
 ---
 import { createClient } from '@supabase/supabase-js';
 import "../styles/global.css";
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL || import.meta.env.SUPABASE_URL;
@@ -24,14 +25,9 @@ if (supabase) {
 }
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Repair Services</title>
-  </head>
-  <body class="min-h-screen bg-slate-50 text-slate-900 antialiased">
-    <main class="mx-auto max-w-6xl px-3 py-8 sm:px-6 sm:py-16">
+ 
+  <BaseLayout>
+  <main class="mx-auto max-w-6xl px-3 py-8 sm:px-6 sm:py-16">
       <header class="mb-6 sm:mb-10">
         <p class="mb-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-green-600 sm:mb-3 sm:text-sm">Mulletto Fix</p>
         <h1 class="text-2xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">Phone Repair Services</h1>
@@ -75,5 +71,5 @@ if (supabase) {
         </section>
       )}
     </main>
-  </body>
-</html>
+ 
+</BaseLayout>
