@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
 import { supabase } from "../lib/supabase";
 import ShopNavbar from "../components/ShopNavbar.astro";
 import Footer from "../components/Footer.astro";
@@ -14,17 +15,8 @@ if (error) {
 }
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shop essentials</title>
-    <meta
-      name="description"
-      content="Shop our collection of accessories and replacement parts"
-    />
-  </head>
-  <body class="bg-slate-50 text-slate-900">
+<BaseLayout title="Shop - Mullettofix">
+
     <ShopNavbar />
     <section class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8" aria-label="Shop items">
      
@@ -116,9 +108,9 @@ if (error) {
         ))}
       </div>
 
-      <br />
-      <Footer />
+   
     </section>
+</BaseLayout>
 
     <script>
       const track = document.getElementById('new-arrivals-track');
